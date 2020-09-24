@@ -7,14 +7,19 @@
 #    return 301 https://$host$request_uri;
 #}
 
-server {
-	listen 80 
-# ssl;
-    listen [::]:80
-# ssl;
+events {
+    worker_connections 1024;
+}
 
+http {
+server {
+	listen 80;
+# ssl;
+    listen [::]:80;
+# ssl;
+#/var/lib/nginx/html
     root /www;
-    index index.html index.htm;
+    index index.html;
 
     server_name my_domain;
 
@@ -25,8 +30,9 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run /php/php7.3-fpm.sock;
-    }
+#    location ~ \.php$ {
+#        include snippets/fastcgi-php.conf;
+#        fastcgi_pass unix:/var/run /php/php7.3-fpm.sock;
+#    }
+}
 }
