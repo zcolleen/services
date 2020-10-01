@@ -2,22 +2,18 @@ FROM alpine
 
 RUN apk update
 RUN apk add vim
-RUN apk add mysql mysql-client
-RUN mkdir /run/mysqld/
-#RUN mkfifo /run/mysqld/mysqld.sock
-RUN chown -R mysql /run/mysqld
+RUN apk add php7-session php7-common php7-iconv php7-json php7-gd php7-curl php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap php7-ctype php7-dom
+RUN apk add php
+RUN mkdir -p /usr/share/webapps/
+RUN wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz
+RUN tar zxvf phpMyAdmin-5.0.2-all-languages.tar.gz
+RUN rm phpMyAdmin-5.0.2-all-languages.tar.gz
+RUN mv phpMyAdmin-5.0.2-all-languages /usr/share/webapps/phpmyadmin
+#RUN chmod -R 777 /usr/share/webapps/
 
-#RUN cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+COPY ./src/config.inc.php /usr/share/webapps/phpmyadmin/
 
-COPY src/file.sql ./
-COPY ./src/my.cnf /etc/my.cnf
-COPY ./src/start.sh ./
+EXPOSE 5000
 
-RUN mysql_install_db
-
-EXPOSE 3306
-
-CMD [ "sh", "start.sh" ]
-#CMD [ "/usr/bin/mysqld_safe", "--datadir='/var/lib/mysql'"]
-#RUN apk add mysql-server
-#RUN apk add mariadb-client
+CMD [ "php7", "-S", "0.0.0.0:5000", "-t", "/usr/share/webapps/phpmyadmin" ]
+#php7 -S 0.0.0.0:5000 -t /usr/share/webapps/phpmyadmin
