@@ -13,13 +13,19 @@ spec:
     spec:
       containers:
       - name: php
-        image: phpmyadmin 
+        image: phpmyadmin
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
         - containerPort: 5000
+        env:
+        - name: PMA_HOST
+          value: mysql-service
+        - name: PMA_PORT
+          value: "3306"
+        imagePullPolicy: Never
 
 ---
 
@@ -33,6 +39,7 @@ spec:
   ports:
   - port: 5000
     name: admin
-    targetPort: 5000
+  type: LoadBalancer
+#  loadBalancerIP: 192.168.99.153
 
 

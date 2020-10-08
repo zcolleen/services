@@ -14,13 +14,10 @@ spec:
       containers:
       - name: mysql
         image: mysql
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        imagePullPolicy: Never
         ports:
-        - containerPort: 80
-        - containerPort: 443
+          - containerPort: 3306
+            name: mysql
 
 ---
 
@@ -32,6 +29,4 @@ spec:
   selector:
     app: mysql
   ports:
-  - port: 80
-    name: http
-
+  - port: 3306
