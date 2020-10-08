@@ -20,6 +20,7 @@ COPY ./src/index.html /www
 
 EXPOSE 80 443
 
+#CMD [ "sh" ]
 CMD ["nginx", "-g", "daemon off;"]
 
 #RUN rc-service nginx start
