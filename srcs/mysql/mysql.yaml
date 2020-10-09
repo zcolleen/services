@@ -20,12 +20,9 @@ spec:
             name: mysql
         volumeMounts:
           - mountPath: "/var/lib/mysql"
-            subPath: "mysql"
             name: mysql-data
       volumes:
       - name: mysql-data
-        hostPath:
-            path: /mnt/volume
         persistentVolumeClaim:
           claimName: mysql-data-disk
 

@@ -4,10 +4,11 @@ FROM alpine
 RUN apk update
 RUN apk add vim
 RUN apk add mysql mysql-client
-RUN mkdir /run/mysqld/
+RUN mkdir "/run/mysqld"
 #RUN mkfifo /run/mysqld/mysqld.sock
 RUN chown -R mysql /run/mysqld
 
+#VOLUME [ "/var/lib/mysql" ]
 #RUN cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 
 COPY src/file.sql ./
@@ -18,9 +19,8 @@ RUN mysql_install_db
 
 EXPOSE 3306
 
-VOLUME [ "/var/lib/mysql" ]
-
-CMD [ "sh", "start.sh" ]
+CMD ["sh"]
+#CMD [ "sh", "start.sh" ]
 #CMD [ "/usr/bin/mysqld_safe", "--datadir='/var/lib/mysql'"]
 #RUN apk add mysql-server
 #RUN apk add mariadb-client

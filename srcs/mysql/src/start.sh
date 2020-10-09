@@ -1,1 +1,2 @@
-mysqld < file.sql
+#mysqld < file.sql
+mysqld

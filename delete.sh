@@ -5,3 +5,4 @@ kubectl delete service php-service
 kubectl delete service nginx-service
 kubectl delete service mysql-service
 kubectl delete persistentvolumeclaim mysql-data-disk
+kubectl delete persistentvolume mysql-data
