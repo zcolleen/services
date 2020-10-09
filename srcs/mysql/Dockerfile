@@ -18,6 +18,8 @@ RUN mysql_install_db
 
 EXPOSE 3306
 
+VOLUME [ "/var/lib/mysql" ]
+
 CMD [ "sh", "start.sh" ]
 #CMD [ "/usr/bin/mysqld_safe", "--datadir='/var/lib/mysql'"]
 #RUN apk add mysql-server
