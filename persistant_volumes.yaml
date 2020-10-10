@@ -11,7 +11,7 @@ spec:
   capacity:
     storage: 1Gi
   hostPath:
-    path: "/tmp"
+    path: "/mnt/data"
     type: DirectoryOrCreate
   claimRef:
     name: mysql-data-disk
