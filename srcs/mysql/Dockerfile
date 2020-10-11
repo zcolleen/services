@@ -15,7 +15,7 @@ COPY src/file.sql ./
 COPY ./src/my.cnf /etc/my.cnf
 COPY ./src/start.sh ./
 
-RUN mysql_install_db
+#RUN mysql_install_db
 
 #VOLUME [ "/var/lib/mysql" ]
 EXPOSE 3306
