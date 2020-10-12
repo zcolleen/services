@@ -1,3 +1,1 @@
-openrc default
-rc-service vsftpd start
-sh
+vsftpd /etc/vsftpd/vsftpd.conf
