@@ -1,0 +1,19 @@
+FROM alpine
+
+RUN apk update && apk upgrade
+RUN apk add openssl \
+			vsftpd
+
+RUN mkdir -p /etc/vsftpd/private \
+	&& openssl req -newkey rsa:2048 -nodes -keyout /etc/vsftpd/private/vsftpd.pem \
+		-x509 -days 90 -subj "/C=RU/ST=Tatarstan/L=Kazan/O=21school/OU=21/CN=zkerriga" \
+		-out /etc/vsftpd/private/vsftpd.pem \
+	&& chmod 755 /etc/vsftpd/private/vsftpd.pem
+
+RUN echo 'root:root' | chpasswd
+
+COPY src/vi.conf		/etc/vsftpd/vsftp_ftps.conf
+COPY ./init.sh			/var/
+
+EXPOSE 21 20 21000
+CMD sh /var/init.sh
