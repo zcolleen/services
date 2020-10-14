@@ -8,7 +8,7 @@ RUN mkdir "/run/mysqld"
 #RUN echo -e "mypass\nmypass\n" | adduser -S zcolleen 
 #RUN mkfifo /run/mysqld/mysqld.sock
 RUN chown -R mysql /run/mysqld
-VOLUME [ "/var/lib/mysql" ]
+#VOLUME [ "/var/lib/mysql" ]
 #RUN cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 
 COPY src/file.sql ./
