@@ -12,6 +12,7 @@ RUN chown -R mysql /run/mysqld
 #RUN cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 
 COPY src/file.sql ./
+COPY src/wordpress.sql ./
 COPY ./src/my.cnf /etc/my.cnf
 COPY ./src/start.sh ./
 
