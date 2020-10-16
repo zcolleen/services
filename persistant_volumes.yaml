@@ -63,3 +63,37 @@ spec:
   resources:
     requests:
       storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: influxdb-data
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: "/mnt/influx"
+    type: DirectoryOrCreate
+  claimRef:
+    name: mysql-data-disk
+    namespace: default
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influx-data-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
