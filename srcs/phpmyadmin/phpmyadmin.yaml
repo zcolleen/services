@@ -14,10 +14,6 @@ spec:
       containers:
       - name: php
         image: phpmyadmin
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5000
         env:
@@ -45,4 +41,4 @@ spec:
   - port: 5000
     name: admin
   type: LoadBalancer
-
+  loadBalancerIP: 192.168.99.111

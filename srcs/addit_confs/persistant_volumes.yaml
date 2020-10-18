@@ -79,10 +79,10 @@ spec:
   capacity:
     storage: 1Gi
   hostPath:
-    path: "/mnt/influx"
+    path: "/mnt/influxdb"
     type: DirectoryOrCreate
   claimRef:
-    name: mysql-data-disk
+    name: influxdb-data-disk
     namespace: default
 
 ---
@@ -90,7 +90,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: influx-data-disk
+  name: influxdb-data-disk
 spec:
   accessModes:
     - ReadWriteOnce

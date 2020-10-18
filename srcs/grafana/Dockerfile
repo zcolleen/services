@@ -7,6 +7,8 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk &&\
     apk add glibc-2.28-r0.apk
 
+COPY ./src/custom.ini /grafana/conf/
+
 EXPOSE 3000
 
 CMD ["/grafana/bin/grafana-server", "-homepath", "/grafana/"]

@@ -14,10 +14,6 @@ spec:
       containers:
       - name: grafana
         image: grafana
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 3000
           name: https
@@ -35,3 +31,5 @@ spec:
   ports:
   - port: 3000
   type: LoadBalancer
+  loadBalancerIP: 192.168.99.114
+  

@@ -1,3 +1,6 @@
+docker rm -f $(docker ps -q)
+docker rmi -f $(docker images -q)
+
 kubectl delete deploy php-deployment
 kubectl delete deploy nginx-deployment
 kubectl delete deploy mysql-deployment
