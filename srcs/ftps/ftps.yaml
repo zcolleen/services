@@ -22,13 +22,6 @@ spec:
           name: ftps-dt
         - containerPort: 21000
           name: ftps-pass
-        volumeMounts:
-          - mountPath: /home/zcolleen
-            name: ftps-data
-      volumes:
-      - name: ftps-data
-        persistentVolumeClaim:
-          claimName: ftps-data-disk
 
 ---
 

@@ -19,13 +19,10 @@ RUN rc-service sshd start
 RUN ssh-keygen -A
 RUN rc-service sshd stop
 
-COPY ./src/start.sh .
 COPY ./src/nginx_config /etc/nginx/nginx.conf
 COPY ./src/index.html /www
 COPY  ./src/supervisord.conf /etc/supervisord.conf
 
 EXPOSE 80 443 22
 
-#CMD [ "sh" ]
-#CMD [ "sh", "start.sh" ]
 CMD [ "/usr/bin/supervisord", "-c", "etc/supervisord.conf" ]

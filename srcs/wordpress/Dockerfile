@@ -12,9 +12,9 @@ RUN wget http://wordpress.org/latest.tar.gz
 RUN tar -xzvf latest.tar.gz -C /etc/
 RUN rm -rf latest.tar.gz
 
-
+COPY ./src/start.sh .
 COPY ./src/wp-config.php /etc/wordpress/wp-config.php
 
-CMD [ "php7", "-S", "0.0.0.0:5050", "-t", "/etc/wordpress/" ]
+CMD [ "sh", "start.sh" ]
 
 EXPOSE 5050

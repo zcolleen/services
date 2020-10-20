@@ -35,40 +35,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ftps-data
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/ftps"
-    type: DirectoryOrCreate
-  capacity:
-    storage: 1Gi
-  claimRef:
-    name: ftps-data-disk
-    namespace: default
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
- name: ftps-data-disk
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: influxdb-data
   labels:
     type: local
